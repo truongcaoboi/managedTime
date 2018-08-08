@@ -35,6 +35,9 @@ public class Action {
 		String sql="insert into Account(id,username,password) values(\'user\',\'"
 				+ username+"\',\'"+password+"\')";
 		Display.execute(sql);
+		sql="insert into Humans(id,name,address,job,company,birth,gender,groupHumans,nickname,iden_no)"
+				+ "values(\'user\',\'name\',\'address\',\'job\',\'company\',\'1970/1/1\',2,4,\'nickname\',\'0\')";
+		Display.execute(sql);
 	}
 	public static String createId(String table) {
 		int k=0;
@@ -189,5 +192,27 @@ public class Action {
 				+ "\',\'"+id+"\',\'moi\',\'"+phone+"\')";
 		Display.execute(sql);
 	}
-	
+	public static void setColor(JTable table) {
+		/*int x=table.getRowCount();
+		DefaultTableModel model=(DefaultTableModel)table.getModel();
+		for(int i=0;i<x;i++) {
+			String lv=table.getValueAt(i, 4).toString();
+			if(lv=="Rất quan trọng") {
+				
+			}
+		}*/
+	}
+	public static void addNote(String date,String hour,String min,String content) {
+		String sql="insert into GhiChu(id,date_exe,content,gio,phut) values(\'"
+		+ Action.createId("GhiChu")+"\',str_to_date(\'"+date+"\',\'%d/%m/%Y\')"
+		+ ",\'"+content+"\',\'"+hour+"\',\'"+min+"\')";
+		//System.out.println(sql);
+		Display.execute(sql);
+	}
+	public static void updateNote(String date,String hour,String min,String content) {
+		String sql="update GhiChu set gio=\'"+hour+"\',phut=\'"+min+
+				"\',content=\'"+content+"\' where date_exe=str_to_date(\'"+date+"\',\'%d/%m/%Y\')";
+		//System.out.println(sql);
+		Display.execute(sql);
+	}
 }

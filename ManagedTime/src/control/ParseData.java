@@ -4,13 +4,13 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 public class ParseData {
 	private SimpleDateFormat output1=new SimpleDateFormat("dd/MM/Y");
-	private SimpleDateFormat output2=new SimpleDateFormat("dd/MM/Y HH:mm:ss");
+	private SimpleDateFormat output2=new SimpleDateFormat("dd/MM/Y HH:mm");
 	public String parseDateToString(java.util.Date date) {
 		String s="loi";
 		try {
 			s=output1.format(date);
 		}catch(Exception ex) {
-			
+			s="1/1/1970";
 		}
 		return s;
 	}
@@ -42,19 +42,100 @@ public class ParseData {
 		return "";
 	}
 	public static String parseToLevel(int x) {
-		if(x==1) {
-			return "Đặc biệt quan trọng";
+		if(x==0) {
+			return "Rất quan trọng";
 		}
-		if(x==2) {
+		if(x==1) {
 			return "Quan trọng";
 		}
-		if(x==3) {
+		if(x==2) {
 			return "Bình thường";
 		}
-		if(x==4) {
-			return "Tự do thoải mái";
+		if(x==3) {
+			return "Không quan trọng";
 		}
 		return "";
+	}
+	public static int parseLevel(String s) {
+		if(s.equals("Rất quan trọng")) {
+			return 0;
+		}
+		if(s.equals("Quan trọng")) {
+			return 1;
+		}
+		if(s.equals("Bình thường")) {
+			return 2;
+		}
+		if(s.equals("Không quan trọng")) {
+			return 3;
+		}
+		return 0;
+	}
+	public static String parseToSequence(int x) {
+		if(x==0) {
+			return "Thường xuyên";
+		}
+		if(x==1) {
+			return "Thỉnh thoảng";
+		}
+		if(x==2) {
+			return "Hiếm khi";
+		}
+		return "";
+	}
+	public static int parseSequence(String s) {
+		if(s.equals("Thường xuyên")) {
+			return 0;
+		}
+		if(s.equals("Thỉnh thoảng")) {
+			return 1;
+		}
+		if(s.equals("Hiếm khi")) {
+			return 2;
+		}
+		return 0;
+	}
+	public static String parseToStatus(int x) {
+		if(x==0) {
+			return "Chưa làm";
+		}
+		if(x==1) {
+			return "Bắt đầu làm";
+		}
+		if(x==2) {
+			return "Đang làm";
+		}
+		if(x==3) {
+			return "Tạm dừng";
+		}
+		if(x==4) {
+			return "Đã hủy";
+		}
+		if(x==5) {
+			return "Hoàn thành";
+		}
+		return "";
+	}
+	public static int parseStatus(String s) {
+		if(s.equals("Chưa làm")) {
+			return 0;
+		}
+		if(s.equals("Bắt đầu làm")) {
+			return 1;
+		}
+		if(s.equals("Đang làm")) {
+			return 2;
+		}
+		if(s.equals("Tạm dừng")) {
+			return 3;
+		}
+		if(s.equals("Đã hủy")) {
+			return 4;
+		}
+		if(s.equals("Hoàn thành")) {
+			return 5;
+		}
+		return 0;
 	}
 	public static int parseToGRP(String g) {
 		if(g.equals("Bạn bè")) {
@@ -73,12 +154,15 @@ public class ParseData {
 		
 	}
 	public static Date parseDate(String s){
-		System.out.println(s);
+		if(s==null||s.equals("")) {
+			s="1/1/1970";
+		}
+		//System.out.println(s);
 		SimpleDateFormat input=new SimpleDateFormat("dd/MM/yyyy");
 		Date date=new Date();
 		try {
 			 date=input.parse(s);
-			 System.out.println(input.format(date));
+			 //System.out.println(input.format(date));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

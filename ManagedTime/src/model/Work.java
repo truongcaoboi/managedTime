@@ -7,7 +7,7 @@ public class Work {
 	private String description;
 	private String date_start;
 	private String date_end;
-	private String status;
+	private int status;
 	private int level;
 	private int sequence;
 	//Các phương thức thiết lập dữ liệu
@@ -29,7 +29,7 @@ public class Work {
 	public void setDate_end(String s) {
 		date_end=s;
 	}
-	public void setStatus(String s) {
+	public void setStatus(int s) {
 		status=s;
 	}
 	public void setLevel(int l) {
@@ -57,7 +57,7 @@ public class Work {
 	public String getDate_end() {
 		return date_end;
 	}
-	public String getStatus() {
+	public int getStatus() {
 		return status;
 	}
 	public int getLevel() {

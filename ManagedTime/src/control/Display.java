@@ -127,8 +127,8 @@ public class Display {
 				w.setDescription(rs.getString("description"));
 				w.setId(rs.getString("id"));
 				w.setLevel(rs.getInt("level"));
-				w.setName(rs.getString("name"));
-				w.setStatus(rs.getString("status"));
+				w.setName(rs.getString("content"));
+				w.setStatus(rs.getInt("status"));
 				w.setSequence(rs.getInt("sequence"));
 				w.setTitle(rs.getString("title"));
 				listWork.add(w);
@@ -261,5 +261,87 @@ public class Display {
 			model.addRow(row);
 		}
 		return model;
+	}
+	public static DefaultTableModel getTableWork() {
+		DefaultTableModel model=new DefaultTableModel(new Object[][] {},new String [] {"id","Tiêu đề","Nội dung","Trạng thái","Mức độ"});
+		String sql="select * from CongViec where status=0 or status=1"
+				+ " or status=2 or status=3";
+		//System.out.println(sql);
+		Vector<Work> listWork=Display.getWork(sql);
+		for(int i=0;i<listWork.size();i++) {
+			Work w=(Work)listWork.get(i);
+			String id=w.getId();
+			String title=w.getTitle();
+			String name=w.getName();
+			int status=w.getStatus();
+			int level=w.getLevel();
+			String row[]= {id,title,name,ParseData.parseToStatus(status),ParseData.parseToLevel(level)};
+			model.addRow(row);
+		}
+		
+		return model;
+	}
+	public static DefaultTableModel getTableWork(String sql) {
+		DefaultTableModel model=new DefaultTableModel(new Object[][] {},new String [] {"id","Tiêu đề","Nội dung","Trạng thái","Mức độ"});
+		//String sql="select * from CongViec where status=0 or status=1"
+				//+ " or status=2 or status=4";
+		//System.out.println(sql);
+		Vector<Work> listWork=Display.getWork(sql);
+		for(int i=0;i<listWork.size();i++) {
+			Work w=(Work)listWork.get(i);
+			String id=w.getId();
+			String title=w.getTitle();
+			String name=w.getName();
+			int status=w.getStatus();
+			int level=w.getLevel();
+			String row[]= {id,title,name,ParseData.parseToStatus(status),ParseData.parseToLevel(level)};
+			model.addRow(row);
+		}
+		
+		return model;
+	}
+	public static Work getWorkItem(String sql) {
+		Work k=new Work();
+		try {
+		Connection con=Database.getConnect();
+		Statement state=con.createStatement();
+		ResultSet rs=state.executeQuery(sql);
+		//System.out.println(sql);
+		while(rs.next()) {
+			k.setId(rs.getString("id"));
+			k.setDate_end(new ParseData().parseDateToString(rs.getDate("date_end")));
+			k.setTitle(rs.getString("title"));
+			k.setStatus(rs.getInt("status"));
+			k.setLevel(rs.getInt("level"));
+			k.setSequence(rs.getInt("sequence"));
+			k.setName(rs.getString("content"));
+			k.setDescription(rs.getString("description"));
+			//System.out.println(k.getId()+k.getDate_end()+k.getDescription()+k.getLevel()+k.getName()+k.getSequence()+k.getStatus()+k.getStatus());
+		}
+		}catch(Exception ex) {}
+		return k;
+	}
+	public static Note getNoteItem(String sql) {
+		Note n=new Note();
+		try {
+			Connection con=Database.getConnect();
+			Statement state=con.createStatement();
+			ResultSet rs=state.executeQuery(sql);
+			while(rs.next()) {
+			
+				n.setContent(rs.getString("content"));
+				n.setDate(new ParseData().parseDateToString(rs.getDate("date_exe")));
+				n.setId(rs.getString("id"));
+				n.setHour(rs.getString("gio"));
+				n.setPhut(rs.getString("phut"));
+				//System.out.println("trong ham goi:"+n.getHour()+n.getPhut());
+			}
+			Database.closeResultSet(rs);
+			Database.closeStatement(state);
+			Database.closeConnect(con);
+		}catch(Exception e){
+			
+		}
+		return n;
 	}
 }

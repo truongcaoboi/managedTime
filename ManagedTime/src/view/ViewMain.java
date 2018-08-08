@@ -22,6 +22,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.border.MatteBorder;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class ViewMain extends JFrame implements Runnable {
 
@@ -66,12 +68,19 @@ public class ViewMain extends JFrame implements Runnable {
 		contentPane.add(panelMenu);
 		panelMenu.setLayout(null);
 		
+		JPanel panelContent = new JPanel();
+		
 		JButton btnLLV = new JButton("Lịch làm việc");
+		btnLLV.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Navigation.goToWork(panelContent);
+			}
+		});
 		btnLLV.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnLLV.setBounds(10, 24, 264, 52);
 		panelMenu.add(btnLLV);
 		
-		JPanel panelContent = new JPanel();
+		
 		panelContent.setBorder(new MatteBorder(0, 1, 0, 1, (Color) new Color(0, 0, 0)));
 
 		JButton btnTTCN = new JButton("Thông tin cá nhân");
@@ -95,6 +104,11 @@ public class ViewMain extends JFrame implements Runnable {
 		panelMenu.add(btnDSLL);
 		
 		JButton btnGhiChu = new JButton("Ghi chú");
+		btnGhiChu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Navigation.goToNote(panelContent);
+			}
+		});
 		btnGhiChu.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnGhiChu.setBounds(10, 251, 264, 52);
 		panelMenu.add(btnGhiChu);
@@ -125,18 +139,35 @@ public class ViewMain extends JFrame implements Runnable {
 		panelMenu.add(lbDay);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("E:\\laptrinhjava\\luyentap java\\ManagedTime\\src\\image\\tai-hinh-nen-hoat-hinh-de-thuong-cho-may-tinh-8.jpg"));
-		label.setBounds(10, 448, 264, 231);
+		label.setIcon(new ImageIcon("..\\image\\tai-hinh-nen-hoat-hinh-de-thuong-cho-may-tinh-8.jpg"));
+		label.setBounds(10, 447, 264, 231);
 		panelMenu.add(label);
 		
 		panelContent.setBounds(304, 92, 1074, 709);
 		contentPane.add(panelContent);
 		panelContent.setLayout(null);
+		PanelWork p=new PanelWork();
+		p.setBounds(0,0,1074,709);
+		panelContent.add(p);
 		
 		JPanel panelImporWork = new JPanel();
+		panelImporWork.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				panelImporWork.removeAll();
+				PanelImportWork im=new PanelImportWork();
+				im.setBounds(0,0,343,709);
+				panelImporWork.add(im);
+				panelImporWork.revalidate();
+				panelImporWork.repaint();
+			}
+		});
 		panelImporWork.setBounds(1388, 92, 343, 709);
 		contentPane.add(panelImporWork);
 		panelImporWork.setLayout(null);
+		PanelImportWork im=new PanelImportWork();
+		im.setBounds(0, 0, 343, 709);
+		panelImporWork.add(im);
 		
 		JLabel lblCngVicC = new JLabel("CÔNG VIỆC CÁ NHÂN");
 		lblCngVicC.setForeground(new Color(0, 100, 0));

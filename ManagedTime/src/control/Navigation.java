@@ -1,5 +1,6 @@
 package control;
 import model.*;
+import view.*;
 import view.DanhBa;
 import view.PanelTTCN;
 
@@ -28,6 +29,22 @@ public class Navigation {
 		d.setBounds(0,0,1074,709);
 		parent.removeAll();
 		parent.add(d);
+		parent.revalidate();
+		parent.repaint();
+	}
+	public static void goToNote(JPanel parent) {
+		PanelGhiCHu p=new PanelGhiCHu();
+		p.setBounds(0,0,1074,709);
+		parent.removeAll();
+		parent.add(p);
+		parent.revalidate();
+		parent.repaint();
+	}
+	public static void goToWork(JPanel parent) {
+		PanelWork p=new PanelWork();
+		p.setBounds(0,0,1074,709);
+		parent.removeAll();
+		parent.add(p);
 		parent.revalidate();
 		parent.repaint();
 	}
