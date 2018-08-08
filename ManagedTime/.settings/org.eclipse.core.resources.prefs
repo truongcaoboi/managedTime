@@ -1,0 +1,16 @@
+eclipse.preferences.version=1
+encoding//src/control/Action.java=UTF-8
+encoding//src/control/Database.java=UTF-8
+encoding//src/control/Display.java=UTF-8
+encoding//src/control/ParseData.java=UTF-8
+encoding//src/model/Email.java=UTF-8
+encoding//src/model/Humans.java=UTF-8
+encoding//src/model/Note.java=UTF-8
+encoding//src/model/Phone.java=UTF-8
+encoding//src/model/User.java=UTF-8
+encoding//src/model/Work.java=UTF-8
+encoding//src/view/DanhBa.java=UTF-8
+encoding//src/view/PanelTTCN.java=UTF-8
+encoding//src/view/PrivateInfo.java=UTF-8
+encoding//src/view/SignUp.java=UTF-8
+encoding//src/view/ViewMain.java=UTF-8

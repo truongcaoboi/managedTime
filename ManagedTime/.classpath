@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_181"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/Xuan Truong PC/Downloads/mysql-connector-java-8.0.8-dmr/mysql-connector-java-8.0.8-dmr/mysql-connector-java-8.0.8-dmr-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Xuan Truong PC/Downloads/jcalendar-1.4.zip"/>
+	<classpathentry kind="lib" path="jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Xuan Truong PC/Desktop/Quản lý thư mục/Các tool cài/lib/jgoodies-looks-2.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Xuan Truong PC/Desktop/Quản lý thư mục/Các tool cài/lib/jgoodies-common-1.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Xuan Truong PC/Desktop/Quản lý thư mục/Các tool cài/lib/junit-4.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
